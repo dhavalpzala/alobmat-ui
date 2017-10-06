@@ -1,0 +1,84 @@
+html, body, #root {
+  height: 100%;
+  min-width: 900px;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.wrap {
+  flex-wrap: wrap;
+}
+
+.content {
+  justify-content: center;
+}
+
+.left-content, .right-content {
+  flex: 0 0 230px;
+  padding: 0 10px;
+}
+
+.left-content > *, .right-content > * {
+  flex: 1 1 auto;
+  border: 1px solid lightgray;
+}
+
+.center-content {
+  /*flex: 1 1 auto;*/
+}
+
+.housie-number-container {
+  padding: 10px;
+  border: 1px solid lightgray;
+  justify-content: space-between;
+}
+
+.housie-number {
+  width: calc(100% / 11 - 10px);
+  padding-top: calc(100% / 11 - 10px);
+  border: 1px solid lightgray;
+  border-radius: 50%;
+  margin: 5px;
+  color: white;
+  background: forestgreen;
+  position: relative;
+}
+
+.housie-number span {
+  position: absolute;
+  top: calc( 50% - .75vw);
+  left: 0;
+  height: 100%;
+  width: 100%;
+  text-align: center;
+  font-size: 1.5vw;
+}
+
+.header {
+  padding: 5px 10px;
+  font-size: 15px;
+  background: #0899cc;
+  color: white;
+}
+
+.prizes-container {
+
+}
+
+.chats-container {
+  margin-top: 10px;
+}
