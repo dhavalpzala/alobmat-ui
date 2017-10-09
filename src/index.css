@@ -48,8 +48,8 @@ body {
 }
 
 .housie-number {
-  width: calc(100% / 11 - 10px);
-  padding-top: calc(100% / 11 - 10px);
+  width: calc(100% / 10 - 12px);
+  padding-top: calc(100% / 10 - 12px);
   border: 1px solid lightgray;
   border-radius: 50%;
   margin: 5px;
@@ -58,11 +58,14 @@ body {
   position: relative;
 }
 
+.housie-number.selected {
+  background: red;
+}
+
 .housie-number span {
   position: absolute;
   top: calc( 50% - .75vw);
   left: 0;
-  height: 100%;
   width: 100%;
   text-align: center;
   font-size: 1.5vw;
