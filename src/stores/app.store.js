@@ -9,6 +9,7 @@ export class AppStore extends EventEmitter {
     constructor() {
         super()
         this.selectedHousieNumbers = [];
+        this.newPick = undefined;
     }
 
     emitChange() {
@@ -29,6 +30,7 @@ let appStoreInstance = new AppStore()
 appStoreInstance.dispatchToken = AppDispatcher.register(action => {
   switch(action.type) {
     case ACTION_TYPES.NEW_PICK:
+      appStoreInstance.newPick = action.data;
       appStoreInstance.selectedHousieNumbers.push(action.data);
       appStoreInstance.emitChange()
       break

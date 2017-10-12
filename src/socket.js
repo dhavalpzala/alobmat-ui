@@ -4,6 +4,7 @@
 // To use Phoenix channels, the first step is to import Socket
 // and connect at the socket path in "lib/web/endpoint.ex":
 import {Socket} from "phoenix"
+import {SERVER_URL, SERVER_PORT} from "./server"
 
 let socket = new Socket("/ws", {params: {token: window.userToken}})
 
@@ -52,7 +53,7 @@ let socket = new Socket("/ws", {params: {token: window.userToken}})
 // from connect if you don't care about authentication.
 
 socket.endPointURL = () => {
-  return "ws://localhost:4000/ws/websocket?token=undefined&vsn=2.0.0";
+  return `ws://${SERVER_URL}:${SERVER_PORT}/ws/websocket?token=undefined&vsn=2.0.0`;
 }
 
 socket.connect()
