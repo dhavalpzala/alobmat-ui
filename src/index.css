@@ -98,3 +98,49 @@ body {
 .chats-container {
   margin-top: 10px;
 }
+
+.timer {
+  background: #0899cc;
+  padding: 10px;
+  font-family: monospace;
+  color: white;
+  text-align: center;
+  margin: 10px 0px;
+  font-size: 2vw;
+}
+
+/* Home Page */
+.home {
+  padding: 10px;
+}
+
+.create-game-name, .create-game-interval {
+  padding: 6px;
+  margin-right: 5px;
+}
+
+.create-game-interval {
+  width: 75px;
+}
+
+.button {
+  padding: 8px 20px;
+  color: white;
+  border: 1px solid lightgray;
+  background: #0899cc;
+}
+
+.game-list-item {
+  padding: 10px;
+  margin: 10px 10px 0 0;
+  border: 1px solid lightgray;
+  cursor: pointer;
+}
+
+.game-list-item:hover {
+  border: 1px solid #0899cc;
+}
+.game-list-item-title {
+  text-transform: uppercase;
+  font-weight: bold;
+}
