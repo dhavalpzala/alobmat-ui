@@ -43,31 +43,44 @@ const AppAction = {
     AppService.createGame(gameName, interval);
   },
 
+  joinLobby() {
+    let lobby = socket.channel(`public:lobby`, {});
+
+    lobby.on('new_game', response => {
+      console.log(ACTION_TYPES.ADD_GAME, response);
+      AppDispatcher.dispatch({
+        type: ACTION_TYPES.ADD_GAME,
+        data: response
+      })
+    });
+
+    lobby.on('end_game', response => {
+      console.log(ACTION_TYPES.REMOVE_GAME, response);
+      AppDispatcher.dispatch({
+        type: ACTION_TYPES.REMOVE_GAME,
+        data: response.id
+      })
+    });
+
+    lobby.join()
+      .receive("ok", resp => {
+        AppDispatcher.dispatch({
+          type: ACTION_TYPES.GET_ALL_GAMES,
+          data: resp.active_games
+        });
+      })
+      .receive("error", resp => {
+        console.log("Failed to join lobby")
+      });
+  },
+
   getAllGames() {
     AppService.getAllGames().then((response) => response.json()).then((responseJson) => {
       AppDispatcher.dispatch({
         type: ACTION_TYPES.GET_ALL_GAMES,
         data: responseJson.games
       });
-    });
-
-    let lobby = socket.channel(`public:lobby`, {});
-
-    lobby.on("new_game", (response) => {
-      this.getAllGames();
-    });
-
-    lobby.on("end_game", () => {
-      this.getAllGames();
-    });
-
-    lobby.join()
-      .receive("ok", resp => {
-        console.log("Lobby joined, currently running: ", resp)
-      })
-      .receive("error", resp => {
-        console.log("Failed to join lobby")
-      });
+    });    
   },
 
   getToken() {

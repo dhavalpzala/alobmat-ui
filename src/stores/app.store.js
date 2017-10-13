@@ -1,5 +1,4 @@
 import AppDispatcher from '../dispatchers/app.dispatcher'
-import AppAction from '../actions/app.action'
 import EventEmitter from 'events'
 import ACTION_TYPES from '../constants/action_types'
 
@@ -44,7 +43,14 @@ appStoreInstance.dispatchToken = AppDispatcher.register(action => {
       appStoreInstance.games = action.data;
       appStoreInstance.emitChange();
       break
-
+    case ACTION_TYPES.ADD_GAME:
+      appStoreInstance.games = [action.data, ...appStoreInstance.games]
+      appStoreInstance.emitChange()
+      break
+    case ACTION_TYPES.REMOVE_GAME:
+      appStoreInstance.games = appStoreInstance.games.filter(game => game.id !== action.data)
+      appStoreInstance.emitChange()
+      break
     case ACTION_TYPES.INITIAL_STATE:
       appStoreInstance.selectedHousieNumbers = action.data.picks || [];
       appStoreInstance.emitChange();
