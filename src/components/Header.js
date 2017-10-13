@@ -5,7 +5,7 @@ class Header extends Component {
 
     return (
       <div className="App-header">
-        <div className="App-title">Tambola</div>
+        <a href="/" className="App-title">Tambola</a>
       </div>
     );
   }

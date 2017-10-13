@@ -33,12 +33,13 @@ class Home extends Component {
       games_list = [];
 
     games.forEach((game, index) => {
-      games_list.push(<div className="game-list-item" key={'game-list-' + index.toString()}>
+      games_list.push(<a href={ "/game/" + game.id} className="game-list-item" key={'game-list-' + index.toString()}>
+        <div className="game-list-item-title">{game.id}</div>
         <div className="game-list-item-title">{game.name}</div>
         <div> Interval: {game.details.interval} secs</div>
         <div>Status: {game.status}</div>
         <div>Hosted by: {game.owner.name}</div>
-      </div>)
+      </a>)
     });
 
     return (

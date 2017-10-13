@@ -135,6 +135,7 @@ body {
   margin: 10px 10px 0 0;
   border: 1px solid lightgray;
   cursor: pointer;
+  color: black;
 }
 
 .game-list-item:hover {

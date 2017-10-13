@@ -28,7 +28,8 @@ const AppService = {
   getToken() {
     return fetch(`/api/auth/token`, {
       method: 'GET',
-      headers: headers
+      headers: headers,
+      credentials: "same-origin"
     })
   }
 }

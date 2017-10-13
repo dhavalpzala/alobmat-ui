@@ -44,6 +44,11 @@ appStoreInstance.dispatchToken = AppDispatcher.register(action => {
       appStoreInstance.games = action.data;
       appStoreInstance.emitChange();
       break
+
+    case ACTION_TYPES.INITIAL_STATE:
+      appStoreInstance.selectedHousieNumbers = action.data.picks || [];
+      appStoreInstance.emitChange();
+      break
     default:
       return
   }
