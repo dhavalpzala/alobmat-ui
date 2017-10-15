@@ -18,14 +18,14 @@ class Game extends Component {
     return (
       <div>
         <Header/>
-        <div className = "content row" >
-          <div className = "column left-content" >
+        <div className="columns">
+          <div className="column">
             <Prizes/>
           </div>
-          <div className = "center-content" >
+          <div className="column is-half">
             <HousieNumbers/>
           </div>
-          <div className = "column right-content" >
+          <div className="column">
             <Notifications/>
             <Chats/>
           </div>

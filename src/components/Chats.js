@@ -4,8 +4,10 @@ class Prizes extends Component {
   render() {
 
     return (
-      <div className="chats-container">
-        <div className="header">Chats</div>
+      <div className="tabs is-right">
+        <ul>
+          <li className="is-active"><a>Chat</a></li>
+        </ul>
       </div>
     );
   }

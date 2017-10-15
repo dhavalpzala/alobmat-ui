@@ -2,6 +2,7 @@ import AppDispatcher from '../dispatchers/app.dispatcher'
 import ACTION_TYPES from '../constants/action_types'
 import AppService from '../services/app.service'
 import socket from "../socket";
+import Push from 'push.js';
 
 const AppAction = {
   joinGame(gameId) {
@@ -17,6 +18,15 @@ const AppAction = {
           type: ACTION_TYPES.NEW_PICK,
           data: payload.pick
         });
+
+        Push.create("Tambola", {
+            body: `Picked: ${payload.pick}`,
+            timeout: 4000,
+            onClick: function () {
+                window.focus();
+                this.close();
+            }
+        });
       })
 
       channel.on(ACTION_TYPES.TIME_TO_PICK, payload => {
@@ -28,6 +38,7 @@ const AppAction = {
 
       channel.join()
       .receive("ok", response => {
+        console.log(response);
         AppDispatcher.dispatch({
           type: ACTION_TYPES.INITIAL_STATE,
           data: response.state

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import appStoreInstance from '../stores/app.store';
+import GamePanel from './GamePanel';
 
 class HousieNumbers extends Component {
   constructor(props) {
@@ -45,8 +46,8 @@ class HousieNumbers extends Component {
     }
 
     return (
-      <div>
-        {timer}
+      <div className="board">
+        <GamePanel />
         <div className="housie-number-container row wrap">
           { housie_numbers }
         </div>

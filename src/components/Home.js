@@ -69,11 +69,6 @@ class Home extends Component {
               </div>
             </div>
           </section>
-          <div>
-            <input id="new-game-name" placeholder="Game name" className="create-game-name" type="text" />
-            <input id="new-game-interval" placeholder="interval" className="create-game-interval" type="number" />
-            <input className="create-game-button button" type="button" value="Create" onClick={this.createGame.bind(this)} />
-          </div>
           <a className="button is-danger is-bold is-large is-block">Host Game</a>
           <hr className="navbar-divider" />
           <nav className="panel" style={{"background": "#fff"}}>

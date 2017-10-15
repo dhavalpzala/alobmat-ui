@@ -3,7 +3,6 @@
 
 html, body, #root {
   height: 100%;
-  min-width: 900px;
 }
 
 body {
@@ -45,24 +44,22 @@ body {
 }
 
 .housie-number-container {
-  padding: 10px;
-  border: 1px solid lightgray;
+  margin-top: 10px;
   justify-content: space-between;
 }
 
 .housie-number {
   width: calc(100% / 10 - 12px);
   padding-top: calc(100% / 10 - 12px);
-  border: 1px solid lightgray;
   border-radius: 50%;
   margin: 5px;
   color: white;
-  background: forestgreen;
+  background: #3273dc;
   position: relative;
 }
 
 .housie-number.selected {
-  background: red;
+  background: #ff3860;
 }
 
 .housie-number.selected.new-pick {
@@ -74,13 +71,13 @@ body {
 
 @keyframes blink {
     0% {transform: scale(1);}
-    50% {transform: scale(1.2);}
+    50% {transform: scale(1.25);}
     100% {transform: scale(1);}
 }
 
 .housie-number span {
   position: absolute;
-  top: calc( 50% - .75vw);
+  top: calc( 50% - 1.1vw);
   left: 0;
   width: 100%;
   text-align: center;
@@ -161,4 +158,8 @@ img.is-circle {
 .game-list-item-title {
   text-transform: uppercase;
   font-weight: bold;
+}
+
+.board {
+  padding: 12px;
 }

@@ -32,6 +32,7 @@ appStoreInstance.dispatchToken = AppDispatcher.register(action => {
   switch(action.type) {
     case ACTION_TYPES.NEW_PICK:
       appStoreInstance.newPick = action.data;
+      appStoreInstance.timeToPick = 0;
       appStoreInstance.selectedHousieNumbers.push(action.data);
       appStoreInstance.emitChange();
       break
@@ -52,7 +53,8 @@ appStoreInstance.dispatchToken = AppDispatcher.register(action => {
       appStoreInstance.emitChange()
       break
     case ACTION_TYPES.INITIAL_STATE:
-      appStoreInstance.selectedHousieNumbers = action.data.picks || [];
+      appStoreInstance.selectedHousieNumbers = action.data.board.picks || [];
+      appStoreInstance.newPick = action.data.board.picks ? action.data.board.picks[0]: '-';
       appStoreInstance.emitChange();
       break
     default:
