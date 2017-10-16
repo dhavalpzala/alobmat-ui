@@ -7,7 +7,9 @@ const ACTION_TYPES = {
   REMOVE_GAME: 'end_game',
   PAUSE: 'pause',
   RESUME: 'resume',
-  AWARD: 'prize_awarded'
+  AWARD: 'prize_awarded',
+  PRESENCE: 'presence',
+  PRESENCE_DIFF: 'presence_diff'
 }
 
 export default ACTION_TYPES;

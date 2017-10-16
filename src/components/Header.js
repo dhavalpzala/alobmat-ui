@@ -57,7 +57,7 @@ class Header extends Component {
               <div className="field is-grouped">
                 <p className="control">
                   {
-                  user.id ?
+                  (user && user.id) ?
                     <div className="navbar-item has-dropdown is-hoverable">
                       <a className="button is-link" href="#">
                         <span className="icon">

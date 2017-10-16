@@ -206,7 +206,8 @@ img.is-circle {
   overflow: auto;
 }
 
-.event-notifications .tabs {
+.event-notifications .tabs,
+.chat-panel .tabs {
   margin-bottom: 0;
 }
 
@@ -266,4 +267,18 @@ img.is-circle {
 .left-panel {
   height: calc(100vh - 58px);
   background: #fafafa;
+}
+
+.presence-record {
+  padding: 8px 24px;
+  font-size: 0.9rem;
+}
+
+.presence-record {
+  margin-bottom: 0 !important;
+}
+
+.presence-record .fa-circle {
+  color: #23d160;
+  transform: scale(0.75);
 }
