@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import Presence from './Presence'
+import Chat from './Chat'
 
-class Chat extends Component {
+class ChatPanel extends Component {
   constructor() {
     super();
 
     this.state = {
-      activeTab: 'presence'
+      activeTab: 'chat'
     }
   }
 
@@ -23,7 +24,9 @@ class Chat extends Component {
           </ul>
         </div>
         <div className="tabs-container">
-          <div className={"chat " +  (!chatEnabled?'is-hidden':'')}></div>
+          <div className={"chat " +  (!chatEnabled?'is-hidden':'')}>
+            <Chat />
+          </div>
           <div className={"presence " + (!presenceEnabled?'is-hidden':'')}>
             <Presence />
           </div>
@@ -33,4 +36,4 @@ class Chat extends Component {
   }
 }
 
-export default Chat;
+export default ChatPanel;

@@ -14,6 +14,11 @@ const AppAction = {
         token: userToken
       });
 
+      AppDispatcher.dispatch({
+        type: ACTION_TYPES.JOIN_GAME,
+        data: channel
+      })
+
       channel.on(ACTION_TYPES.NEW_PICK, payload => {
         AppDispatcher.dispatch({
           type: ACTION_TYPES.NEW_PICK,
@@ -34,6 +39,13 @@ const AppAction = {
         AppDispatcher.dispatch({
           type: ACTION_TYPES.TIME_TO_PICK,
           data: payload.remaining
+        });
+      })
+
+      channel.on(ACTION_TYPES.NEW_MESSAGE, payload => {
+        AppDispatcher.dispatch({
+          type: ACTION_TYPES.NEW_MESSAGE,
+          data: payload
         });
       })
 

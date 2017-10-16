@@ -17,6 +17,8 @@ export class AppStore extends EventEmitter {
     this.prizes = [],
     this.currentUser = {}
     this.presence = []
+    this.messages = []
+    this.gameChannel = undefined
     this.notifications = [{
         type: EVENT_TYPES.JOINED,
         data: {
@@ -55,6 +57,10 @@ appStoreInstance.dispatchToken = AppDispatcher.register(action => {
     case ACTION_TYPES.TIME_TO_PICK:
       appStoreInstance.timeToPick = action.data;
       appStoreInstance.emitChange();
+      break
+    case ACTION_TYPES.NEW_MESSAGE:
+      appStoreInstance.messages = appStoreInstance.messages.concat([action.data])
+      appStoreInstance.emitChange()
       break
     case ACTION_TYPES.GET_ALL_GAMES:
       appStoreInstance.games = action.data;
@@ -137,6 +143,9 @@ appStoreInstance.dispatchToken = AppDispatcher.register(action => {
         }
       }).concat(appStoreInstance.presence)
       appStoreInstance.emitChange();
+      break
+    case ACTION_TYPES.JOIN_GAME:
+      appStoreInstance.gameChannel = action.data
       break
     default:
       return

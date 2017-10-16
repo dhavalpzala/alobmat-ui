@@ -16,6 +16,11 @@ body {
   flex-direction: row;
 }
 
+.columns {
+  height: calc(100vh - 52px);
+  overflow: hidden;
+}
+
 .column {
   display: flex;
   flex-direction: column;
@@ -281,4 +286,48 @@ img.is-circle {
 .presence-record .fa-circle {
   color: #23d160;
   transform: scale(0.75);
+}
+
+.chat {
+  position: relative;
+  height: calc(50vh - 60px)
+}
+
+.message-input {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.message-input textarea {
+  resize: none;
+  padding: 4px;
+  font-size: 0.8rem;
+}
+
+.messages {
+  height: calc(50vh - 108px);
+  overflow: auto;
+}
+
+.messages .media-left,
+.message-input .media-left {
+  padding: 8px;
+  margin-right: 0;
+}
+
+.message-input .media-content {
+  padding: 4px;
+}
+
+.messages .media {
+  margin-top: 0;
+  padding-top: 4px !important;
+  font-size: 0.8em;
+  border-top: none !important;
+}
+
+.messages .media:nth-child(even) {
+  background: whitesmoke;
 }
