@@ -32,7 +32,7 @@ class Header extends Component {
 
             <div className="navbar-item">
               <div className="field is-grouped">
-                <p className="control">
+                <div className="control">
                   <div className="navbar-item has-dropdown is-hoverable">
                     <a
                       className="button is-primary"
@@ -54,7 +54,7 @@ class Header extends Component {
                       </a>
                     </div>
                   </div>
-                </p>
+                </div>
               </div>
             </div>
           </div>

@@ -1,5 +1,6 @@
 import AppDispatcher from '../dispatchers/app.dispatcher'
 import ACTION_TYPES from '../constants/action_types'
+import EVENT_TYPES from '../constants/event_types'
 import AppService from '../services/app.service'
 import socket from "../socket";
 import Push from 'push.js';
@@ -20,12 +21,12 @@ const AppAction = {
         });
 
         Push.create("Tambola", {
-            body: `Picked: ${payload.pick}`,
-            timeout: 4000,
-            onClick: function () {
-                window.focus();
-                this.close();
-            }
+          body: `Picked: ${payload.pick}`,
+          timeout: 4000,
+          onClick: function() {
+            window.focus();
+            this.close();
+          }
         });
       })
 
@@ -53,16 +54,16 @@ const AppAction = {
       })
 
       channel.join()
-      .receive("ok", response => {
-        console.log(response);
-        AppDispatcher.dispatch({
-          type: ACTION_TYPES.INITIAL_STATE,
-          data: response
-        });
-      })
-      .receive("error", response => {
-        console.log("Unable to join", response)
-      })
+        .receive("ok", response => {
+          console.log(response);
+          AppDispatcher.dispatch({
+            type: ACTION_TYPES.INITIAL_STATE,
+            data: response
+          });
+        })
+        .receive("error", response => {
+          console.log("Unable to join", response)
+        })
     });
   },
 
@@ -107,11 +108,40 @@ const AppAction = {
         type: ACTION_TYPES.GET_ALL_GAMES,
         data: responseJson.games
       });
-    });    
+    });
   },
 
   getToken() {
     AppService.getToken();
+  },
+
+  getNotifications(gameId) {
+    AppService.getToken().then((response) => response.json()).then((responseJson) => {
+      const userToken = responseJson.user_token;
+
+      let channel = socket.channel(`notifications:${gameId}`, {
+        token: userToken
+      });
+
+      channel.on(EVENT_TYPES.HOSTED, payload => {
+        AppDispatcher.dispatch({
+          type: EVENT_TYPES.HOSTED,
+          data: ""
+        });
+      })
+
+      channel.join()
+        .receive("ok", response => {
+          console.log(response);
+          AppDispatcher.dispatch({
+            type: EVENT_TYPES.INITIAL_STATE,
+            data: response
+          });
+        })
+        .receive("error", response => {
+          console.log("Unable to join", response)
+        })
+    });
   }
 }
 

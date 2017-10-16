@@ -51,7 +51,7 @@ class GamePanel extends Component {
           </div>
         </div>
 
-        <div className="control" style={{"margin-left": "auto"}}>
+        <div className="control" style={{"marginLeft": "auto"}}>
           <div className="tags has-addons">
             <span className="tag is-dark">Timer</span>
             <span className="tag is-warning">{minutes}:{seconds}</span>

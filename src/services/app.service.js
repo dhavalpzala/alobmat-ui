@@ -17,8 +17,30 @@ const AppService = {
       headers: headers,
       credentials: "same-origin",
       body: JSON.stringify({
-        name: gameName,
-        interval: interval
+        "name": gameName,
+        "about": "Hello World",
+        "interval": interval,
+        "moderators": [
+          1
+        ],
+        "prizes": [{
+            "name": "Housie",
+            "reward": "Nothing"
+          },
+          {
+            "name": "Top Line",
+            "reward": "Nothing"
+          },
+          {
+            "name": "Bottom Line",
+            "reward": "Nothing"
+          },
+          {
+            "name": "Middle Line",
+            "reward": "Nothing"
+          }
+        ],
+        "bulletin": "Hi\nThis is going to get interesting."
       })
     })
   },

@@ -1,37 +1,87 @@
 import AppDispatcher from '../dispatchers/app.dispatcher'
 import EventEmitter from 'events'
 import ACTION_TYPES from '../constants/action_types'
+import EVENT_TYPES from '../constants/event_types'
 
 const CHANGE_EVENT = 'change'
 
 export class AppStore extends EventEmitter {
-    constructor() {
-        super()
-        this.games = [];
-        this.selectedHousieNumbers = [];
-        this.newPick = undefined;
-        this.timeToPick = undefined;
-        this.gamePaused = false;
-        this.isGameAdmin = false;
-    }
+  constructor() {
+    super()
+    this.games = [];
+    this.selectedHousieNumbers = [];
+    this.newPick = undefined;
+    this.timeToPick = undefined;
+    this.gamePaused = false;
+    this.isGameAdmin = false;
+    this.notifications = [{
+        type: EVENT_TYPES.HOSTED,
+        data: {
+          source: {
+            name: "Dhavalsinh Zala",
+            avatar_url: "https://lh4.googleusercontent.com/-ZQcpNw3Vs5Y/AAAAAAAAAAI/AAAAAAAAACc/SoVs9FHWj-s/photo.jpg"
+          }
+        }
+      }, {
+        type: EVENT_TYPES.JOINED,
+        data: {
+          source: {
+            name: "Kiran D",
+            avatar_url: "https://lh4.googleusercontent.com/-ZQcpNw3Vs5Y/AAAAAAAAAAI/AAAAAAAAACc/SoVs9FHWj-s/photo.jpg"
+          }
+        }
+      }, {
+        type: EVENT_TYPES.PAUSED,
+        data: {
+          source: {
+            name: "Kiran D",
+            avatar_url: "https://lh4.googleusercontent.com/-ZQcpNw3Vs5Y/AAAAAAAAAAI/AAAAAAAAACc/SoVs9FHWj-s/photo.jpg"
+          }
+        }
+      }, {
+        type: EVENT_TYPES.RESUMED,
+        data: {
+          source: {
+            name: "Kiran D",
+            avatar_url: "https://lh4.googleusercontent.com/-ZQcpNw3Vs5Y/AAAAAAAAAAI/AAAAAAAAACc/SoVs9FHWj-s/photo.jpg"
+          }
+        }
+      }, {
+        type: EVENT_TYPES.AWARDED,
+        data: {
+          source: {
+            name: "Kiran D",
+            avatar_url: "https://lh4.googleusercontent.com/-ZQcpNw3Vs5Y/AAAAAAAAAAI/AAAAAAAAACc/SoVs9FHWj-s/photo.jpg"
+          },
+          prize: {
+            name: "Top Line"
+          },
+          winner: {
+            name: "Dhavalsinh Zala",
+            avatar_url: "https://lh4.googleusercontent.com/-ZQcpNw3Vs5Y/AAAAAAAAAAI/AAAAAAAAACc/SoVs9FHWj-s/photo.jpg"
+          }
+        }
+      }
+    ];
+  }
 
-    emitChange() {
-      this.emit(CHANGE_EVENT);
-    }
+  emitChange() {
+    this.emit(CHANGE_EVENT);
+  }
 
-    addChangeListener(callback) {
-      this.on(CHANGE_EVENT, callback);
-    }
+  addChangeListener(callback) {
+    this.on(CHANGE_EVENT, callback);
+  }
 
-    removeChangeListener(callback) {
-      this.removeListener(CHANGE_EVENT, callback);
-    }
+  removeChangeListener(callback) {
+    this.removeListener(CHANGE_EVENT, callback);
+  }
 }
 
 let appStoreInstance = new AppStore()
 
 appStoreInstance.dispatchToken = AppDispatcher.register(action => {
-  switch(action.type) {
+  switch (action.type) {
     case ACTION_TYPES.NEW_PICK:
       appStoreInstance.newPick = action.data;
       appStoreInstance.timeToPick = 0;
@@ -56,9 +106,11 @@ appStoreInstance.dispatchToken = AppDispatcher.register(action => {
       break
     case ACTION_TYPES.INITIAL_STATE:
       appStoreInstance.game = action.data.game;
-      appStoreInstance.selectedHousieNumbers = action.data.state.board.picks || [];
-      appStoreInstance.newPick = action.data.state.board.picks ? action.data.state.board.picks[0]: '-';
-      appStoreInstance.gamePaused = action.data.state.status === 'paused'
+      if (appStoreInstance.game.status === 'running') {
+        appStoreInstance.selectedHousieNumbers = action.data.state.board.picks || [];
+        appStoreInstance.newPick = action.data.state.board.picks ? action.data.state.board.picks[0] : '-';
+        appStoreInstance.gamePaused = action.data.state.status === 'paused'
+      }
       appStoreInstance.isGameAdmin = action.data.is_admin
       appStoreInstance.emitChange();
       break

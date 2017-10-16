@@ -200,3 +200,26 @@ img.is-circle {
   /*border: 1px solid #bbb;*/
   /*border-radius: 2px 2px 0 0;*/
 }
+
+.event-notification {
+  font-size: 12px;
+  padding: 10px;
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+  background: #edf2fa;
+  margin:2px 0;
+  line-height: 30px;
+}
+
+.event-notification .event-user-name {
+  font-weight: bold;
+  margin: 0 5px;
+}
+
+.event-notifications .row  {
+  align-items: center;
+}
+
+.event-notification .event-user:not(first-child) {
+  margin-left: 5px;
+}
