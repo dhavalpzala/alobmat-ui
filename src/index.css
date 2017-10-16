@@ -1,6 +1,8 @@
+@import "../node_modules/font-awesome/css/font-awesome.min.css";
+@import "../node_modules/bulma/css/bulma.css";
+
 html, body, #root {
   height: 100%;
-  min-width: 900px;
 }
 
 body {
@@ -42,24 +44,22 @@ body {
 }
 
 .housie-number-container {
-  padding: 10px;
-  border: 1px solid lightgray;
+  margin-top: 10px;
   justify-content: space-between;
 }
 
 .housie-number {
   width: calc(100% / 10 - 12px);
   padding-top: calc(100% / 10 - 12px);
-  border: 1px solid lightgray;
   border-radius: 50%;
   margin: 5px;
   color: white;
-  background: forestgreen;
+  background: #3273dc;
   position: relative;
 }
 
 .housie-number.selected {
-  background: red;
+  background: #ff3860;
 }
 
 .housie-number.selected.new-pick {
@@ -71,13 +71,13 @@ body {
 
 @keyframes blink {
     0% {transform: scale(1);}
-    50% {transform: scale(1.2);}
+    50% {transform: scale(1.25);}
     100% {transform: scale(1);}
 }
 
 .housie-number span {
   position: absolute;
-  top: calc( 50% - .75vw);
+  top: calc( 50% - 1.1vw);
   left: 0;
   width: 100%;
   text-align: center;
@@ -109,9 +109,25 @@ body {
   font-size: 2vw;
 }
 
+img.is-circle {
+  border-radius: 50%;
+}
+
 /* Home Page */
 .home {
-  padding: 10px;
+  padding: 36px 0;
+  min-height: 100vh;
+  background: #3273dc;
+  background: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI4IiBoZWlnaHQ9IjgiPgo8cmVjdCB3aWR0aD0iOCIgaGVpZ2h0PSI4IiBmaWxsPSIjMzI3M2RjIj48L3JlY3Q+CjxwYXRoIGQ9Ik0wIDBMOCA4Wk04IDBMMCA4WiIgc3Ryb2tlLXdpZHRoPSIwLjEiIHN0cm9rZT0iI2VlZSI+PC9wYXRoPgo8L3N2Zz4=");
+}
+
+.home-banner {
+  padding: 24px;
+  background: #fcfcfc;
+  width: 480px;
+  margin: 0 auto;
+  border-radius: 4px;
+  box-shadow: 0 24px 36px #000;
 }
 
 .create-game-name, .create-game-interval {
@@ -132,8 +148,6 @@ body {
 
 .game-list-item {
   padding: 10px;
-  margin: 10px 10px 0 0;
-  border: 1px solid lightgray;
   cursor: pointer;
   color: black;
 }
@@ -144,4 +158,8 @@ body {
 .game-list-item-title {
   text-transform: uppercase;
   font-weight: bold;
+}
+
+.board {
+  padding: 12px;
 }

@@ -4,8 +4,10 @@ class Notifications extends Component {
   render() {
 
     return (
-      <div className="Notifications-container">
-        <div className="header">Notifications</div>
+      <div className="tabs is-right">
+        <ul>
+          <li className="is-active"><a>Notifications</a></li>
+        </ul>
       </div>
     );
   }

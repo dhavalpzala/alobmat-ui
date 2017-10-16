@@ -3,6 +3,7 @@ import HousieNumbers from './Housie_numbers';
 import Prizes from './Prizes';
 import Notifications from './Notifications';
 import Chats from './Chats';
+import Header from './Header';
 import AppAction from '../actions/app.action'
 
 class Game extends Component {
@@ -11,21 +12,23 @@ class Game extends Component {
 
     const gameId = this.props.params.id;
     AppAction.joinGame(gameId);
-    
   }
 
   render() {
     return (
-      <div className = "content row" >
-        <div className = "column left-content" >
-          <Prizes/>
-        </div>
-        <div className = "center-content" >
-          <HousieNumbers/>
-        </div>
-        <div className = "column right-content" >
-          <Notifications/>
-          <Chats/>
+      <div>
+        <Header/>
+        <div className="columns">
+          <div className="column">
+            <Prizes/>
+          </div>
+          <div className="column is-half">
+            <HousieNumbers/>
+          </div>
+          <div className="column">
+            <Notifications/>
+            <Chats/>
+          </div>
         </div>
       </div>
     );
