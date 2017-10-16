@@ -4,7 +4,9 @@ const ACTION_TYPES = {
   GET_ALL_GAMES: 'get_all_games',
   INITIAL_STATE: 'initial_state',
   ADD_GAME: 'new_game',
-  REMOVE_GAME: 'end_game'
+  REMOVE_GAME: 'end_game',
+  PAUSE: 'pause',
+  RESUME: 'resume'
 }
 
 export default ACTION_TYPES;

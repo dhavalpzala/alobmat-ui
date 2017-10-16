@@ -36,12 +36,28 @@ const AppAction = {
         });
       })
 
+      channel.on(ACTION_TYPES.PAUSE, payload => {
+        console.log(payload)
+        AppDispatcher.dispatch({
+          type: ACTION_TYPES.PAUSE,
+          data: payload
+        })
+      })
+
+      channel.on(ACTION_TYPES.RESUME, payload => {
+        console.log(payload)
+        AppDispatcher.dispatch({
+          type: ACTION_TYPES.RESUME,
+          data: payload
+        })
+      })
+
       channel.join()
       .receive("ok", response => {
         console.log(response);
         AppDispatcher.dispatch({
           type: ACTION_TYPES.INITIAL_STATE,
-          data: response.state
+          data: response
         });
       })
       .receive("error", response => {
