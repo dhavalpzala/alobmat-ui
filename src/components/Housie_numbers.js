@@ -9,23 +9,26 @@ class HousieNumbers extends Component {
     this.state = {
       selectedHousieNumbers: appStoreInstance.selectedHousieNumbers,
       newPick: appStoreInstance.newPick,
-      timeToPick: appStoreInstance.timeToPick
+      timeToPick: appStoreInstance.timeToPick,
+      paused: appStoreInstance.gamePaused
     }
   }
 
   componentDidMount () {
-      appStoreInstance.addChangeListener(() => {
-        this.setState({
-          selectedHousieNumbers: appStoreInstance.selectedHousieNumbers,
-          newPick: appStoreInstance.newPick,
-          timeToPick: appStoreInstance.timeToPick
-        })
+    appStoreInstance.addChangeListener(() => {
+      this.setState({
+        selectedHousieNumbers: appStoreInstance.selectedHousieNumbers,
+        newPick: appStoreInstance.newPick,
+        timeToPick: appStoreInstance.timeToPick,
+        paused: appStoreInstance.gamePaused
       })
-    }
+    })
+  }
 
   render() {
     const TOTAL_HOUSIE_NUMBERS = 90;
     let housie_numbers = [],
+      overlay,
       timer,
       selectedHousieNumbers = this.state.selectedHousieNumbers,
       newPick = this.state.newPick,
@@ -37,7 +40,7 @@ class HousieNumbers extends Component {
     seconds = seconds < 10 ? "0" + seconds : seconds;
 
     for (let index = 1; index <= TOTAL_HOUSIE_NUMBERS; index++) {
-      let classNames = `housie-number ${selectedHousieNumbers.indexOf(index) > -1 ? 'selected' : ''} ${index === newPick ? 'new-pick' : ''}`;
+      let classNames = `housie-number is-warning ${selectedHousieNumbers.indexOf(index) > -1 ? 'selected' : ''} ${index === newPick ? 'new-pick' : ''}`;
       housie_numbers.push(<div key={'housie-number' + index.toString()} className={ classNames }><span>{index}</span></div>);
     }
 
@@ -45,12 +48,27 @@ class HousieNumbers extends Component {
       timer = <div className="timer">{`${minutes}:${seconds}`}</div>
     }
 
-    return (
-      <div className="board">
-        <GamePanel />
-        <div className="housie-number-container row wrap">
-          { housie_numbers }
+    if (this.state.paused) {
+      overlay = (
+        <div className="board-overlay">
+          <article className="message">
+            Paused
+          </article>
         </div>
+      )
+    } else {
+      overlay = false
+    }
+
+    return (
+      <div className="board-container">
+        <div className="board">
+          <GamePanel />
+          <div className="housie-number-container row wrap">
+            { housie_numbers }
+          </div>
+        </div>
+        {overlay}
       </div>
     );
   }

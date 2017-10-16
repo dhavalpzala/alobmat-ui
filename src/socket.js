@@ -6,7 +6,7 @@
 import {Socket} from "phoenix"
 import {SERVER_URL, SERVER_PORT} from "./server"
 
-let socket = new Socket("/ws", {params: {token: window.userToken}})
+let socket = new Socket("/ws", {params: {}})
 
 // When you connect, you'll often need to authenticate the client.
 // For example, imagine you have an authentication plug, `MyAuth`,
@@ -53,7 +53,7 @@ let socket = new Socket("/ws", {params: {token: window.userToken}})
 // from connect if you don't care about authentication.
 
 socket.endPointURL = () => {
-  return `ws://${SERVER_URL}:${SERVER_PORT}/ws/websocket?token=undefined&vsn=2.0.0`;
+  return `ws://${SERVER_URL}:${SERVER_PORT}/ws/websocket?vsn=2.0.0`;
 }
 
 socket.connect()

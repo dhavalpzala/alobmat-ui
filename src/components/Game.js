@@ -5,6 +5,7 @@ import Notifications from './Notifications';
 import Chats from './Chats';
 import Header from './Header';
 import AppAction from '../actions/app.action'
+import AdminPanel from './AdminPanel';
 
 class Game extends Component {
   constructor(props) {
@@ -24,6 +25,7 @@ class Game extends Component {
           </div>
           <div className="column is-half">
             <HousieNumbers/>
+            <AdminPanel />
           </div>
           <div className="column">
             <Notifications/>

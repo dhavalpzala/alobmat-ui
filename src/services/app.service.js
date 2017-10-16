@@ -22,6 +22,22 @@ const AppService = {
       })
     })
   },
+  pauseGame(gameId) {
+    return fetch(`/api/games/${gameId}/pause`, {
+      method: 'POST',
+      headers: headers,
+      credentials: "same-origin",
+      body: JSON.stringify({})
+    })
+  },
+  resumeGame(gameId) {
+    return fetch(`/api/games/${gameId}/resume`, {
+      method: 'POST',
+      headers: headers,
+      credentials: "same-origin",
+      body: JSON.stringify({})
+    })
+  },
   getGame(gameId) {
 
   },

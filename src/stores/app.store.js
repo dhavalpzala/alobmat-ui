@@ -11,6 +11,8 @@ export class AppStore extends EventEmitter {
         this.selectedHousieNumbers = [];
         this.newPick = undefined;
         this.timeToPick = undefined;
+        this.gamePaused = false;
+        this.isGameAdmin = false;
     }
 
     emitChange() {
@@ -53,8 +55,21 @@ appStoreInstance.dispatchToken = AppDispatcher.register(action => {
       appStoreInstance.emitChange()
       break
     case ACTION_TYPES.INITIAL_STATE:
-      appStoreInstance.selectedHousieNumbers = action.data.board.picks || [];
-      appStoreInstance.newPick = action.data.board.picks ? action.data.board.picks[0]: '-';
+      appStoreInstance.game = action.data.game;
+      appStoreInstance.selectedHousieNumbers = action.data.state.board.picks || [];
+      appStoreInstance.newPick = action.data.state.board.picks ? action.data.state.board.picks[0]: '-';
+      appStoreInstance.gamePaused = action.data.state.status === 'paused'
+      appStoreInstance.isGameAdmin = action.data.is_admin
+      appStoreInstance.emitChange();
+      break
+    case ACTION_TYPES.PAUSE:
+      appStoreInstance.gamePaused = true
+      appStoreInstance.gamePausedBy = action.data.user
+      appStoreInstance.emitChange();
+      break
+    case ACTION_TYPES.RESUME:
+      appStoreInstance.gamePaused = false
+      appStoreInstance.gameResumedBy = action.data.user
       appStoreInstance.emitChange();
       break
     default:
