@@ -11,6 +11,14 @@ class Notifications extends Component {
     }
   }
 
+  componentDidMount () {
+    appStoreInstance.addChangeListener(() => {
+      this.setState({
+        notifications: appStoreInstance.notifications
+      })
+    })
+  }
+
   render() {
     let notifications_list = [],
       notifications = this.state.notifications;
@@ -73,7 +81,7 @@ class Notifications extends Component {
             <li className="is-active"><a>Notifications</a></li>
           </ul>
         </div>
-        <div>
+        <div className="notifications">
           {notifications_list}
         </div>
       </div>

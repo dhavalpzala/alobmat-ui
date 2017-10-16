@@ -201,6 +201,15 @@ img.is-circle {
   /*border-radius: 2px 2px 0 0;*/
 }
 
+.notifications {
+  height: calc(50vh - 50px);
+  overflow: auto;
+}
+
+.event-notifications .tabs {
+  margin-bottom: 0;
+}
+
 .event-notification {
   font-size: 12px;
   padding: 10px;

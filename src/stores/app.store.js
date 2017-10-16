@@ -121,16 +121,37 @@ appStoreInstance.dispatchToken = AppDispatcher.register(action => {
     case ACTION_TYPES.PAUSE:
       appStoreInstance.gamePaused = true
       appStoreInstance.gamePausedBy = action.data.user
+      appStoreInstance.notifications = ([{
+        type: EVENT_TYPES.PAUSED,
+        data: {
+          source: action.data.user
+        }
+      }]).concat(appStoreInstance.notifications)
       appStoreInstance.emitChange();
       break
     case ACTION_TYPES.RESUME:
       appStoreInstance.gamePaused = false
       appStoreInstance.gameResumedBy = action.data.user
+      appStoreInstance.notifications = ([{
+        type: EVENT_TYPES.RESUMED,
+        data: {
+          source: action.data.user
+        }
+      }]).concat(appStoreInstance.notifications)
+      appStoreInstance.emitChange();
       appStoreInstance.emitChange();
       break
     case ACTION_TYPES.AWARD:
       appStoreInstance.prizes = appStoreInstance.prizes.filter(p => p.id !== action.data.prize.id)
       appStoreInstance.prizes = [action.data.prize].concat(appStoreInstance.prizes)
+      appStoreInstance.notifications = ([{
+        type: EVENT_TYPES.AWARDED,
+        data: {
+          source: action.data.awardee,
+          prize: action.data.prize,
+          winner: action.data.prize.winner
+        }
+      }]).concat(appStoreInstance.notifications)
       appStoreInstance.emitChange();
       break
     default:
