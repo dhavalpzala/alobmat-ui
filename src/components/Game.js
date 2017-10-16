@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import HousieNumbers from './Housie_numbers';
-import Prizes from './Prizes';
+import LeftPanel from './LeftPanel';
 import Notifications from './Notifications';
 import Chats from './Chats';
 import Header from './Header';
@@ -21,7 +21,7 @@ class Game extends Component {
         <Header/>
         <div className="columns">
           <div className="column">
-            <Prizes/>
+            <LeftPanel/>
           </div>
           <div className="column is-half">
             <HousieNumbers/>

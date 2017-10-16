@@ -14,6 +14,8 @@ export class AppStore extends EventEmitter {
     this.timeToPick = undefined;
     this.gamePaused = false;
     this.isGameAdmin = false;
+    this.prizes = [],
+    this.currentUser = {}
     this.notifications = [{
         type: EVENT_TYPES.HOSTED,
         data: {
@@ -110,8 +112,10 @@ appStoreInstance.dispatchToken = AppDispatcher.register(action => {
         appStoreInstance.selectedHousieNumbers = action.data.state.board.picks || [];
         appStoreInstance.newPick = action.data.state.board.picks ? action.data.state.board.picks[0] : '-';
         appStoreInstance.gamePaused = action.data.state.status === 'paused'
+        appStoreInstance.isGameAdmin = action.data.is_admin
       }
-      appStoreInstance.isGameAdmin = action.data.is_admin
+      appStoreInstance.prizes = action.data.game.prizes;
+      appStoreInstance.currentUser = action.data.user
       appStoreInstance.emitChange();
       break
     case ACTION_TYPES.PAUSE:
@@ -122,6 +126,11 @@ appStoreInstance.dispatchToken = AppDispatcher.register(action => {
     case ACTION_TYPES.RESUME:
       appStoreInstance.gamePaused = false
       appStoreInstance.gameResumedBy = action.data.user
+      appStoreInstance.emitChange();
+      break
+    case ACTION_TYPES.AWARD:
+      appStoreInstance.prizes = appStoreInstance.prizes.filter(p => p.id !== action.data.prize.id)
+      appStoreInstance.prizes = [action.data.prize].concat(appStoreInstance.prizes)
       appStoreInstance.emitChange();
       break
     default:

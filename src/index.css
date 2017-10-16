@@ -196,8 +196,8 @@ img.is-circle {
   bottom: 0;
   width: 50%;
   padding: 8px 12px;
-  /*background: whitesmoke;*/
-  /*border: 1px solid #bbb;*/
+  background: whitesmoke;
+  border: 1px solid #ddd;
   /*border-radius: 2px 2px 0 0;*/
 }
 
@@ -222,4 +222,39 @@ img.is-circle {
 
 .event-notification .event-user:not(first-child) {
   margin-left: 5px;
+}
+.prize.available .subtitle {
+  color: #23d160;
+}
+
+.prize.won .subtitle {
+  color: #ff3860;
+}
+
+.prize .card-content {
+  padding: 1rem;
+  margin-bottom: 8px;
+}
+
+.message-body {
+  padding: 12px;
+}
+
+.winner-avatar {
+  min-width: 48px;
+}
+
+.subtitle.is-8 {
+  font-size: 0.9rem;
+}
+
+.image.avatar {
+  border-radius: 50%;
+  vertical-align: bottom;
+  margin-right: 6px;
+}
+
+.left-panel {
+  height: calc(100vh - 58px);
+  background: #fafafa;
 }

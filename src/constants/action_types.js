@@ -6,7 +6,8 @@ const ACTION_TYPES = {
   ADD_GAME: 'new_game',
   REMOVE_GAME: 'end_game',
   PAUSE: 'pause',
-  RESUME: 'resume'
+  RESUME: 'resume',
+  AWARD: 'prize_awarded'
 }
 
 export default ACTION_TYPES;

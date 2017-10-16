@@ -38,7 +38,6 @@ const AppAction = {
       })
 
       channel.on(ACTION_TYPES.PAUSE, payload => {
-        console.log(payload)
         AppDispatcher.dispatch({
           type: ACTION_TYPES.PAUSE,
           data: payload
@@ -46,9 +45,15 @@ const AppAction = {
       })
 
       channel.on(ACTION_TYPES.RESUME, payload => {
-        console.log(payload)
         AppDispatcher.dispatch({
           type: ACTION_TYPES.RESUME,
+          data: payload
+        })
+      })
+
+      channel.on(ACTION_TYPES.AWARD, payload => {
+        AppDispatcher.dispatch({
+          type: ACTION_TYPES.AWARD,
           data: payload
         })
       })
@@ -142,6 +147,17 @@ const AppAction = {
           console.log("Unable to join", response)
         })
     });
+  },
+  
+  fetchLoggedInUser() {
+    AppService.fetchLoggedInUser()
+      .then(response => response.json())
+      .then(json => 
+        AppDispatcher.dispatch({
+          type: ACTION_TYPES.GET_LOGGED_IN_USER,
+          data: json
+        })
+      )
   }
 }
 

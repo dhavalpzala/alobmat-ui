@@ -1,13 +1,42 @@
 import React, { Component } from "react";
+import appStoreInstance from '../stores/app.store';
+import AppAction from '../actions/app.action'
 
 class Header extends Component {
+  constructor() {
+    super()
+
+    this.state = {
+      game: {},
+      user: {}
+    }
+  }
+
+  componentDidMount() {
+    appStoreInstance.addChangeListener(() => {
+      this.setState({
+        game: appStoreInstance.game,
+        user: appStoreInstance.currentUser
+      })
+    });
+  }
+
   render() {
+    const game = this.state.game,
+          name = game.name || '',
+          owner = game.owner ? game.owner.name: '',
+          avatar = game.owner ? game.owner.avatar_url: '',
+          user = this.state.user
+
     return (
       <nav className="navbar is-transparent is-link">
         <div className="navbar-brand">
           <a className="navbar-item" href="/">
-            TAMBOLA
+            <i className="fa fa-lg fa-arrow-circle-o-left" />
           </a>
+          <div className="navbar-item" href="/">
+            {name} by <img className="image is-rounded is-24x24" src={avatar} placeholder="avatar" style={{margin:"0 6px 0 12px"}} /> {owner}
+          </div>
 
           <a className="navbar-item is-hidden-desktop" href="https://github.com/jgthms/bulma" target="_blank">
             <span className="icon" style={{ color: "#333" }}>
@@ -24,37 +53,30 @@ class Header extends Component {
 
         <div id="navMenuTransparentExample" className="navbar-menu">
           <div className="navbar-end">
-            <a className="navbar-item is-hidden-desktop-only" href="https://www.github.com/hashd/alobmat" target="_blank">
-              <span className="icon" style={{ color: "#fafafa" }}>
-                <i className="fa fa-lg fa-github" />
-              </span>
-            </a>
-
             <div className="navbar-item">
               <div className="field is-grouped">
-                <div className="control">
-                  <div className="navbar-item has-dropdown is-hoverable">
-                    <a
-                      className="button is-primary"
-                      href="#"
-                    >
-                      <span className="icon">
-                        <i className="fa fa-user-circle-o" />
-                      </span>
-                      <span>User</span>
-                    </a>
-                    <div className="navbar-dropdown is-boxed">
-                      <a className="navbar-item " href="/documentation/overview/start/">
-                        About
+                <p className="control">
+                  {
+                  user.id ?
+                    <div className="navbar-item has-dropdown is-hoverable">
+                      <a className="button is-link" href="#">
+                        <span className="icon">
+                          <img className="image avatar" src={user.avatar_url}/>
+                        </span>
+                        <span>{user.name}</span>
                       </a>
-
-                      <hr className="navbar-divider" />
-                      <a className="navbar-item" href="/auth/logout">
-                        Logout
-                      </a>
+                      <div className="navbar-dropdown is-right">
+                        <a className="navbar-item" href="/auth/logout">
+                          Logout
+                        </a>
+                      </div>
                     </div>
-                  </div>
-                </div>
+                  : 
+                    <a className="button is-small is-link" href="/auth/google">
+                      <span>Login</span>
+                    </a>
+                  }
+                </p>
               </div>
             </div>
           </div>

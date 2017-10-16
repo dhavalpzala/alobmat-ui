@@ -69,6 +69,13 @@ const AppService = {
       headers: headers,
       credentials: "same-origin"
     })
+  },
+  fetchLoggedInUser() {
+    return fetch(`/api/me`, {
+      method: 'GET',
+      headers: headers,
+      credentials: "same-origin"
+    })
   }
 }
 
