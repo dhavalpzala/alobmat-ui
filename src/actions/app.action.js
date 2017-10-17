@@ -174,12 +174,20 @@ const AppAction = {
   fetchLoggedInUser() {
     AppService.fetchLoggedInUser()
       .then(response => response.json())
-      .then(json => 
+      .then(json =>
         AppDispatcher.dispatch({
           type: ACTION_TYPES.GET_LOGGED_IN_USER,
           data: json
         })
       )
+  },
+
+  pauseGame(gameId) {
+    AppService.pauseGame(gameId);
+  },
+
+  resumeGame(gameId) {
+    AppService.resumeGame(gameId);
   }
 }
 

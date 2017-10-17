@@ -13,14 +13,16 @@ class ChatPanel extends Component {
 
   render() {
     const chatEnabled = this.state.activeTab === 'chat',
-          presenceEnabled = this.state.activeTab === 'presence'
+          presenceEnabled = this.state.activeTab === 'presence',
+          activeTab = this.state.activeTab,
+          changeTab = this.changeTab.bind(this);
 
     return (
       <div className="chat-panel">
         <div className="tabs is-fullwidth is-small is-right">
           <ul>
-            <li className="is-active"><a>Chat</a></li>
-            <li><a>Presence</a></li>
+            <li className={activeTab === 'chat'? 'is-active': ''}><a onClick={() => changeTab('chat')}>Chat</a></li>
+            <li className={activeTab === 'presence'? 'is-active': ''}><a onClick={() => changeTab('presence')}>Presence</a></li>
           </ul>
         </div>
         <div className="tabs-container">
@@ -33,6 +35,13 @@ class ChatPanel extends Component {
         </div>
       </div>
     );
+  }
+
+  changeTab(tab) {
+    this.setState({
+      ...this.state,
+      activeTab: tab
+    })
   }
 }
 
