@@ -88,10 +88,13 @@ body {
   color: white;
   background: #3273dc;
   position: relative;
+  opacity: 0.5;
 }
 
 .housie-number.selected {
   background: #ff3860;
+  opacity: 1;
+  box-shadow: 0 4px 4px #000;
 }
 
 .housie-number.selected.new-pick {

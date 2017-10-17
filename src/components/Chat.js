@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 import appStoreInstance from '../stores/app.store'
 
 export default class Chat extends React.Component {
@@ -22,6 +23,10 @@ export default class Chat extends React.Component {
     })
   }
 
+  componentDidUpdate() {
+    //this.scrollToBottom()
+  }
+
   render() {
     const conversation = this.state.messages,
           messages = conversation.map(c => this.createMessage(c.text, c.user)),
@@ -31,6 +36,8 @@ export default class Chat extends React.Component {
       <div>
         <div className="messages">
           {messages}
+          <div ref={(el) => { this.messagesEnd = el; }}>
+          </div>
         </div>
         <div className="message-input">
           {this.getMessageInputField(user)}
@@ -61,6 +68,11 @@ export default class Chat extends React.Component {
   }
 
   _handleKeyPress = (e) => {
+    if (e.ctrlKey && e.key === 'Enter') {
+      e.target.value = e.target.value + '\n'
+      return
+    }
+
     if (e.key === 'Enter') {
       e.preventDefault()
       
@@ -102,5 +114,10 @@ export default class Chat extends React.Component {
         </div>
       </article>
     )
+  }
+
+  scrollToBottom = () => {
+    const node = ReactDOM.findDOMNode(this.messagesEnd);
+    node.scrollIntoView({ behavior: "smooth" });
   }
 }
