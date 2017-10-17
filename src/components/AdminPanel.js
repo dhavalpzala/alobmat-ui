@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import appStoreInstance from '../stores/app.store';
-import AppService from '../services/app.service'
+import AppAction from '../actions/app.action'
 
 class AdminPanel extends Component {
   constructor(props) {
@@ -41,9 +41,9 @@ class AdminPanel extends Component {
 
   togglePause() {
     if (this.state.isPaused) {
-      AppService.resumeGame(this.state.gameId);
+      AppAction.resumeGame(this.state.gameId);
     } else {
-      AppService.pauseGame(this.state.gameId);
+      AppAction.pauseGame(this.state.gameId);
     }
   }
 }

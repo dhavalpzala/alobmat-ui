@@ -6,7 +6,7 @@ import ReactMarkdown from 'react-markdown';
 class LeftPanel extends Component {
   constructor() {
     super()
-    
+
     this.state = {
       activeTab: 'prizes',
       game: {},
@@ -33,11 +33,11 @@ class LeftPanel extends Component {
 
     prizes.concat([]).sort((p1, p2) => (p2.winner ? p2.winner.id: 0) - (p1.winner? p1.winner.id: 0))
 
-    const prizesComponents = prizes.map(prize => <Prize data={prize}></Prize>),
+    const prizesComponents = prizes.map((prize, index) => <Prize data={prize} key={`prize-${index}`}></Prize>),
           changeTab = this.changeTab.bind(this);
-    
+
     return (
-      <div class="left-panel">
+      <div className="left-panel">
         <div className="tabs is-fullwidth is-small">
           <ul>
             <li className={activeTab === 'prizes'? 'is-active': ''}><a onClick={() => changeTab('prizes')}>Prizes</a></li>

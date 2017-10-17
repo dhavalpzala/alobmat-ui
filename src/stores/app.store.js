@@ -14,21 +14,12 @@ export class AppStore extends EventEmitter {
     this.timeToPick = undefined;
     this.gamePaused = false;
     this.isGameAdmin = false;
-    this.prizes = [],
-    this.currentUser = {}
-    this.presence = []
-    this.messages = []
-    this.gameChannel = undefined
-    this.notifications = [{
-        type: EVENT_TYPES.JOINED,
-        data: {
-          source: {
-            name: "Kiran D",
-            avatar_url: "https://lh4.googleusercontent.com/-ZQcpNw3Vs5Y/AAAAAAAAAAI/AAAAAAAAACc/SoVs9FHWj-s/photo.jpg"
-          }
-        }
-      }
-    ];
+    this.prizes = [];
+    this.currentUser = {};
+    this.presence = [];
+    this.messages = [];
+    this.gameChannel = undefined;
+    this.notifications = [];
   }
 
   emitChange() {
@@ -76,8 +67,10 @@ appStoreInstance.dispatchToken = AppDispatcher.register(action => {
       break
     case ACTION_TYPES.INITIAL_STATE:
       appStoreInstance.game = action.data.game;
-      appStoreInstance.selectedHousieNumbers = action.data.state.board.picks || [];
-      appStoreInstance.newPick = action.data.state.board.picks ? action.data.state.board.picks[0] : '-';
+      if (action.data.state.board) {
+        appStoreInstance.selectedHousieNumbers = action.data.state.board.picks || [];
+        appStoreInstance.newPick = action.data.state.board.picks ? action.data.state.board.picks[0] : '-';
+      }
       appStoreInstance.gamePaused = action.data.state.status === 'paused'
       appStoreInstance.isGameAdmin = action.data.is_admin
       appStoreInstance.prizes = action.data.game.prizes;
@@ -104,7 +97,6 @@ appStoreInstance.dispatchToken = AppDispatcher.register(action => {
           source: action.data.user
         }
       }]).concat(appStoreInstance.notifications)
-      appStoreInstance.emitChange();
       appStoreInstance.emitChange();
       break
     case ACTION_TYPES.AWARD:
