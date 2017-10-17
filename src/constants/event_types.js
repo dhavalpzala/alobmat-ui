@@ -6,7 +6,9 @@ const EVENT_TYPES = {
   END_GAME: 'event_end_game',
   PAUSED: 'event_paused',
   RESUMED: 'event_resumed',
-  AWARDED: 'event_awarded'
+  AWARDED: 'event_awarded',
+  PRESENCE: 'presence',
+  PRESENCE_DIFF: 'presence_diff'
 }
 
 export default EVENT_TYPES;

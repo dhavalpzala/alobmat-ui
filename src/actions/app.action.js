@@ -14,6 +14,11 @@ const AppAction = {
         token: userToken
       });
 
+      AppDispatcher.dispatch({
+        type: ACTION_TYPES.JOIN_GAME,
+        data: channel
+      })
+
       channel.on(ACTION_TYPES.NEW_PICK, payload => {
         AppDispatcher.dispatch({
           type: ACTION_TYPES.NEW_PICK,
@@ -37,8 +42,14 @@ const AppAction = {
         });
       })
 
+      channel.on(ACTION_TYPES.NEW_MESSAGE, payload => {
+        AppDispatcher.dispatch({
+          type: ACTION_TYPES.NEW_MESSAGE,
+          data: payload
+        });
+      })
+
       channel.on(ACTION_TYPES.PAUSE, payload => {
-        console.log(payload)
         AppDispatcher.dispatch({
           type: ACTION_TYPES.PAUSE,
           data: payload
@@ -46,16 +57,35 @@ const AppAction = {
       })
 
       channel.on(ACTION_TYPES.RESUME, payload => {
-        console.log(payload)
         AppDispatcher.dispatch({
           type: ACTION_TYPES.RESUME,
           data: payload
         })
       })
 
+      channel.on(ACTION_TYPES.PRESENCE, payload => {
+        AppDispatcher.dispatch({
+          type: ACTION_TYPES.PRESENCE,
+          data: payload
+        })
+      })
+
+      channel.on(ACTION_TYPES.PRESENCE_DIFF, payload => {
+        AppDispatcher.dispatch({
+          type: ACTION_TYPES.PRESENCE_DIFF,
+          data: payload
+        })
+      })
+
+      channel.on(ACTION_TYPES.AWARD, payload => {
+        AppDispatcher.dispatch({
+          type: ACTION_TYPES.AWARD,
+          data: payload
+        })
+      })
+
       channel.join()
         .receive("ok", response => {
-          console.log(response);
           AppDispatcher.dispatch({
             type: ACTION_TYPES.INITIAL_STATE,
             data: response
@@ -75,7 +105,6 @@ const AppAction = {
     let lobby = socket.channel(`public:lobby`, {});
 
     lobby.on('new_game', response => {
-      console.log(ACTION_TYPES.ADD_GAME, response);
       AppDispatcher.dispatch({
         type: ACTION_TYPES.ADD_GAME,
         data: response
@@ -83,7 +112,6 @@ const AppAction = {
     });
 
     lobby.on('end_game', response => {
-      console.log(ACTION_TYPES.REMOVE_GAME, response);
       AppDispatcher.dispatch({
         type: ACTION_TYPES.REMOVE_GAME,
         data: response.id
@@ -132,7 +160,6 @@ const AppAction = {
 
       channel.join()
         .receive("ok", response => {
-          console.log(response);
           AppDispatcher.dispatch({
             type: EVENT_TYPES.INITIAL_STATE,
             data: response
@@ -142,6 +169,17 @@ const AppAction = {
           console.log("Unable to join", response)
         })
     });
+  },
+
+  fetchLoggedInUser() {
+    AppService.fetchLoggedInUser()
+      .then(response => response.json())
+      .then(json => 
+        AppDispatcher.dispatch({
+          type: ACTION_TYPES.GET_LOGGED_IN_USER,
+          data: json
+        })
+      )
   }
 }
 

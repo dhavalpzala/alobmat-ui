@@ -12,6 +12,7 @@
     "push.js": "^1.0.5",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "react-markdown": "^2.5.0",
     "react-router": "^3.2.0",
     "react-scripts": "1.0.14"
   },

@@ -16,6 +16,11 @@ body {
   flex-direction: row;
 }
 
+.columns {
+  height: calc(100vh - 52px);
+  overflow: hidden;
+}
+
 .column {
   display: flex;
   flex-direction: column;
@@ -83,10 +88,13 @@ body {
   color: white;
   background: #3273dc;
   position: relative;
+  opacity: 0.5;
 }
 
 .housie-number.selected {
   background: #ff3860;
+  opacity: 1;
+  box-shadow: 0 4px 4px #000;
 }
 
 .housie-number.selected.new-pick {
@@ -196,9 +204,19 @@ img.is-circle {
   bottom: 0;
   width: 50%;
   padding: 8px 12px;
-  /*background: whitesmoke;*/
-  /*border: 1px solid #bbb;*/
+  background: whitesmoke;
+  border: 1px solid #ddd;
   /*border-radius: 2px 2px 0 0;*/
+}
+
+.notifications {
+  height: calc(50vh - 50px);
+  overflow: auto;
+}
+
+.event-notifications .tabs,
+.chat-panel .tabs {
+  margin-bottom: 0;
 }
 
 .event-notification {
@@ -222,4 +240,97 @@ img.is-circle {
 
 .event-notification .event-user:not(first-child) {
   margin-left: 5px;
+}
+.prize.available .subtitle {
+  color: #23d160;
+}
+
+.prize.won .subtitle {
+  color: #ff3860;
+}
+
+.prize .card-content {
+  padding: 1rem;
+  margin-bottom: 8px;
+}
+
+.message-body {
+  padding: 12px;
+}
+
+.winner-avatar {
+  min-width: 48px;
+}
+
+.subtitle.is-8 {
+  font-size: 0.9rem;
+}
+
+.image.avatar {
+  border-radius: 50%;
+  vertical-align: bottom;
+  margin-right: 6px;
+}
+
+.left-panel {
+  height: calc(100vh - 58px);
+  background: #fafafa;
+}
+
+.presence-record {
+  padding: 8px 24px;
+  font-size: 0.9rem;
+}
+
+.presence-record {
+  margin-bottom: 0 !important;
+}
+
+.presence-record .fa-circle {
+  color: #23d160;
+  transform: scale(0.75);
+}
+
+.chat {
+  position: relative;
+  height: calc(50vh - 60px)
+}
+
+.message-input {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.message-input textarea {
+  resize: none;
+  padding: 4px;
+  font-size: 0.8rem;
+}
+
+.messages {
+  height: calc(50vh - 108px);
+  overflow: auto;
+}
+
+.messages .media-left,
+.message-input .media-left {
+  padding: 8px;
+  margin-right: 0;
+}
+
+.message-input .media-content {
+  padding: 4px;
+}
+
+.messages .media {
+  margin-top: 0;
+  padding-top: 4px !important;
+  font-size: 0.8em;
+  border-top: none !important;
+}
+
+.messages .media:nth-child(even) {
+  background: whitesmoke;
 }
