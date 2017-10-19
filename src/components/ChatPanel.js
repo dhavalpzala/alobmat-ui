@@ -11,16 +11,24 @@ class ChatPanel extends Component {
     }
   }
 
+  changeTab(tab) {
+    this.setState({
+      ...this.state,
+      activeTab: tab
+    })
+  }
+
   render() {
     const chatEnabled = this.state.activeTab === 'chat',
-          presenceEnabled = this.state.activeTab === 'presence'
+          presenceEnabled = this.state.activeTab === 'presence',
+          changeTab = this.changeTab.bind(this)
 
     return (
       <div className="chat-panel">
         <div className="tabs is-fullwidth is-small is-right">
           <ul>
-            <li className="is-active"><a>Chat</a></li>
-            <li><a>Presence</a></li>
+            <li className={chatEnabled? 'is-active': ''}><a onClick={() => changeTab('chat')}>Chat</a></li>
+            <li className={presenceEnabled? 'is-active': ''}><a onClick={() => changeTab('presence')}>Online</a></li>
           </ul>
         </div>
         <div className="tabs-container">

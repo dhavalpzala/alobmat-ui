@@ -19,16 +19,7 @@ export class AppStore extends EventEmitter {
     this.presence = []
     this.messages = []
     this.gameChannel = undefined
-    this.notifications = [{
-        type: EVENT_TYPES.JOINED,
-        data: {
-          source: {
-            name: "Kiran D",
-            avatar_url: "https://lh4.googleusercontent.com/-ZQcpNw3Vs5Y/AAAAAAAAAAI/AAAAAAAAACc/SoVs9FHWj-s/photo.jpg"
-          }
-        }
-      }
-    ];
+    this.notifications = [];
   }
 
   emitChange() {
