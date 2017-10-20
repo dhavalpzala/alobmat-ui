@@ -94,7 +94,7 @@ body {
 .housie-number.selected {
   background: #ff3860;
   opacity: 1;
-  box-shadow: 0 4px 4px #000;
+  box-shadow: 0 4px 4px rgba(0, 0, 0, 0.5);
 }
 
 .housie-number.selected.new-pick {
@@ -196,7 +196,9 @@ img.is-circle {
 }
 
 .board {
-  padding: 12px;
+  padding: 16px;
+  background: #eaf4ff;
+  border-radius: 8px;
 }
 
 .admin-panel {
@@ -274,7 +276,6 @@ img.is-circle {
 
 .left-panel {
   height: calc(100vh - 58px);
-  background: #fafafa;
 }
 
 .presence-record {
