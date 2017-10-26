@@ -8,13 +8,13 @@ export default class Chat extends React.Component {
 
     this.state = {
       messages: [],
-      user: undefined,
-      gameChannel: undefined
+      user: appStoreInstance.currentUser,
+      gameChannel: appStoreInstance.gameChannel
     }
   }
 
   componentDidMount() {
-    appStoreInstance.addChangeListener(() => {
+    appStoreInstance.addNewMessageListener(() => {
       this.setState({
         messages: appStoreInstance.messages,
         user: appStoreInstance.currentUser,

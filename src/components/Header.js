@@ -55,7 +55,7 @@ class Header extends Component {
           <div className="navbar-end">
             <div className="navbar-item">
               <div className="field is-grouped">
-                <p className="control">
+                <div className="control">
                   {
                   (user && user.id) ?
                     <div className="navbar-item has-dropdown is-hoverable">
@@ -71,12 +71,12 @@ class Header extends Component {
                         </a>
                       </div>
                     </div>
-                  : 
+                  :
                     <a className="button is-small is-link" href="/auth/google">
                       <span>Login</span>
                     </a>
                   }
-                </p>
+                </div>
               </div>
             </div>
           </div>

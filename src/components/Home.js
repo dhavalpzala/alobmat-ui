@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AppAction from '../actions/app.action'
 import appStoreInstance from '../stores/app.store';
+import moment from 'moment';
 
 class Home extends Component {
   constructor(props) {
@@ -34,19 +35,16 @@ class Home extends Component {
 
     games.forEach((game, index) => {
       games_list.push(<a className="panel-block" href={ "/game/" + game.id} key={'game-list-' + index.toString()}>
-        <div style={{"padding": "16px"}}>
-          <div className="media">
-            <div className="media-left">
-              <figure className="image is-48x48">
-                <img className="is-circle" src={game.owner.avatar_url} alt="Placeholder image" />
-              </figure>
+          <div className="row active-game">
+            <div>
+              <p className="active-game-title">{game.name}</p>
+              <div>{moment.duration(moment(new Date()).diff(game.started_at)).humanize()} ago</div>
             </div>
-            <div className="media-content">
-              <p className="title is-4">{game.name}</p>
-              <p className="subtitle is-6">by {game.owner.name}</p>
+            <div>
+              <span style={{"opacity": ".7"}}>by </span><img className="avatar image is-32x32" src={game.owner.avatar_url} alt="Placeholder image" />
+              {game.owner.name}
             </div>
           </div>
-        </div>
       </a>)
     });
 
@@ -73,7 +71,7 @@ class Home extends Component {
           <hr className="navbar-divider" />
           <nav className="panel" style={{"background": "#fff"}}>
             <p className="panel-heading has-text-centered is-3">
-              Join Game
+              Active Games
             </p>
             <div className="panel-block">
               <p className="control has-icons-left">
@@ -99,7 +97,7 @@ class Home extends Component {
 
 function getNoGameElement() {
   return (
-    <a className="panel-block" href="#">
+    <a className="panel-block" href="#" key="no-active-game">
       <div style={{"padding": "16px", "width": "100%"}}>
         <div className="media is-block">
           <div className="media-content">

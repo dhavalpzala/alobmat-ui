@@ -3,7 +3,8 @@ import EventEmitter from 'events'
 import ACTION_TYPES from '../constants/action_types'
 import EVENT_TYPES from '../constants/event_types'
 
-const CHANGE_EVENT = 'change'
+const CHANGE_EVENT = 'change';
+const NEW_MESSAGE_EVENT = 'newmessage';
 
 export class AppStore extends EventEmitter {
   constructor() {
@@ -33,6 +34,15 @@ export class AppStore extends EventEmitter {
   removeChangeListener(callback) {
     this.removeListener(CHANGE_EVENT, callback);
   }
+
+  // Temporary added new message listener
+  emitNewMessage() {
+    this.emit(NEW_MESSAGE_EVENT);
+  }
+
+  addNewMessageListener(callback) {
+    this.on(NEW_MESSAGE_EVENT, callback);
+  }
 }
 
 let appStoreInstance = new AppStore()
@@ -51,7 +61,7 @@ appStoreInstance.dispatchToken = AppDispatcher.register(action => {
       break
     case ACTION_TYPES.NEW_MESSAGE:
       appStoreInstance.messages = appStoreInstance.messages.concat([action.data])
-      appStoreInstance.emitChange()
+      appStoreInstance.emitNewMessage()
       break
     case ACTION_TYPES.GET_ALL_GAMES:
       appStoreInstance.games = action.data;
@@ -138,6 +148,8 @@ appStoreInstance.dispatchToken = AppDispatcher.register(action => {
       break
     case ACTION_TYPES.JOIN_GAME:
       appStoreInstance.gameChannel = action.data
+      appStoreInstance.emitNewMessage();
+      break;
       break
     default:
       return

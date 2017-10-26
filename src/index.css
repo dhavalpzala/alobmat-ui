@@ -48,6 +48,27 @@ body {
   /*flex: 1 1 auto;*/
 }
 
+.active-game {
+    line-height: 32px;
+    width: 100%;
+    padding: 10px;
+    align-items: center;
+}
+
+.active-game > * {
+  flex: 1;
+}
+
+.active-game-title {
+    font-size: 1.5em;
+    text-transform: capitalize;
+    flex: 1;
+}
+
+.active-game .image.avatar {
+    display: inline-block;
+}
+
 .board-container {
   margin-top: 10px;
   position: relative;
