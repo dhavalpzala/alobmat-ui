@@ -29,7 +29,7 @@ export default class Chat extends React.Component {
 
   render() {
     const conversation = this.state.messages,
-          messages = conversation.map(c => this.createMessage(c.text, c.user)),
+          messages = conversation.map((c, index) => this.createMessage(c.text, c.user, `chat-${index}`)),
           user = this.state.user
 
     return (
@@ -46,9 +46,9 @@ export default class Chat extends React.Component {
     )
   }
 
-  createMessage(text, user) {
+  createMessage(text, user, key) {
     return (
-      <article className="media">
+      <article className="media" key={key}>
         <figure className="media-left">
           <p className="image is-24x24">
             <img className="image avatar" src={user.avatar_url} />
@@ -75,7 +75,7 @@ export default class Chat extends React.Component {
 
     if (e.key === 'Enter') {
       e.preventDefault()
-      
+
       this.state.gameChannel.push('message', {
         text: e.target.value
       })

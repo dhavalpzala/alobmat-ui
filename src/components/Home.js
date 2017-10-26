@@ -14,7 +14,6 @@ class Home extends Component {
   componentDidMount () {
     AppAction.joinLobby();
 
-    //AppAction.createGame("game1", 1)
     appStoreInstance.addChangeListener(() => {
       this.setState({
         games: appStoreInstance.games
