@@ -21,11 +21,11 @@ export default class Presence extends React.Component {
   render() {
     const presence = this.state.presence
 
-    let presenceRows = presence.map(p => (
-      <div className="level presence-record">
+    let presenceRows = presence.map((p, index) => (
+      <div className="level presence-record" key={`presence-${index}`}>
         <div className="level-left">
           <div className="level-item">
-            <i class="fa fa-circle"></i>
+            <i className="fa fa-circle"></i>
           </div>
           <div className="level-item"><img src={p.avatar_url} className="image avatar is-24x24" /></div>
           <div className="level-item">{p.name}</div>
