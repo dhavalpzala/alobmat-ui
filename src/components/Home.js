@@ -67,8 +67,8 @@ class Home extends Component {
               </div>
             </div>
           </section>
-          <a className="button is-danger is-bold is-large is-block">Host Game</a>
-          <hr className="navbar-divider" />
+          <a className="button is-danger is-hidden is-bold is-large is-block" disabled>Host Game</a>
+          <hr className="navbar-divider is-hidden" />
           <nav className="panel" style={{"background": "#fff"}}>
             <p className="panel-heading has-text-centered is-3">
               Active Games

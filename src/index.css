@@ -18,7 +18,7 @@ body {
 
 .columns {
   height: calc(100vh - 52px);
-  overflow: hidden;
+  overflow: auto;
 }
 
 .column {
@@ -223,12 +223,7 @@ img.is-circle {
 }
 
 .admin-panel {
-  position: fixed;
-  bottom: 0;
-  width: 50%;
   padding: 8px 12px;
-  background: whitesmoke;
-  border: 1px solid #ddd;
   /*border-radius: 2px 2px 0 0;*/
 }
 

@@ -25,7 +25,6 @@ class Game extends Component {
           </div>
           <div className="column is-half">
             <HousieNumbers/>
-            <AdminPanel />
           </div>
           <div className="column">
             <Notifications/>
