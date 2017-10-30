@@ -31,8 +31,10 @@ class AdminPanel extends Component {
     return (
       <div className="admin-panel field is-grouped">
         <p className="control">
-          <a className="button is-small is-info" onClick={this.togglePause.bind(this)}>
-            {this.state.isPaused ? 'Resume': 'Pause'}
+          <a className="button is-small is-danger" onClick={this.togglePause.bind(this)}>
+            {this.state.isPaused?
+              <div><i className="fa fa-icon fa-play"></i></div>: 
+              <div><i className="fa fa-icon fa-pause"></i></div>}
           </a>
         </p>
       </div>

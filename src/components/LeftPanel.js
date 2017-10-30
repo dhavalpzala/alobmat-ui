@@ -8,7 +8,7 @@ class LeftPanel extends Component {
     super()
 
     this.state = {
-      activeTab: 'prizes',
+      activeTab: 'bulletin',
       game: {},
       prizes: []
     }

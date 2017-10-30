@@ -76,9 +76,11 @@ export default class Chat extends React.Component {
     if (e.key === 'Enter') {
       e.preventDefault()
 
-      this.state.gameChannel.push('message', {
-        text: e.target.value
-      })
+      if (e.target.value && e.target.value.trim() !== '') {
+        this.state.gameChannel.push('message', {
+          text: e.target.value
+        })
+      }
       e.target.value = ''
     }
   }
@@ -94,7 +96,7 @@ export default class Chat extends React.Component {
         <div className="media-content">
           <div className="field">
             <p className="control">
-              <textarea className="textarea" placeholder="Add a comment..." rows="1" onKeyPress={this._handleKeyPress}></textarea>
+              <textarea className="textarea" placeholder="Type a message..." rows="1" onKeyPress={this._handleKeyPress}></textarea>
             </p>
           </div>
           <nav className="level is-hidden">

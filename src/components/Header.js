@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import appStoreInstance from '../stores/app.store';
 import AppAction from '../actions/app.action'
+import AdminPanel from './AdminPanel'
+import Cookie from 'js-cookie'
 
 class Header extends Component {
   constructor() {
@@ -43,7 +45,10 @@ class Header extends Component {
               <i className="fa fa-lg fa-github" />
             </span>
           </a>
-
+          
+          <div className="navbar-item">
+            <AdminPanel />
+          </div>
           <div className="navbar-burger burger" data-target="navMenuTransparentExample">
             <span />
             <span />
@@ -73,7 +78,7 @@ class Header extends Component {
                     </div>
                   :
                     <a className="button is-small is-link" href="/auth/google">
-                      <span>Login</span>
+                      <span onClick={this.setRedirectUrlCookie}>Login</span>
                     </a>
                   }
                 </div>
@@ -83,6 +88,10 @@ class Header extends Component {
         </div>
       </nav>
     );
+  }
+
+  setRedirectUrlCookie = () => {
+    Cookie.set('ui_redirect_url', window.location.href)
   }
 }
 

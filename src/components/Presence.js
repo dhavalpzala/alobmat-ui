@@ -19,7 +19,7 @@ export default class Presence extends React.Component {
   }
 
   render() {
-    const presence = this.state.presence
+    const presence = this.state.presence.sort((n0, n1) => n0.name.toUpperCase() > n1.name.toUpperCase()? 1: -1)
 
     let presenceRows = presence.map((p, index) => (
       <div className="level presence-record" key={`presence-${index}`}>
@@ -34,7 +34,7 @@ export default class Presence extends React.Component {
     ))
 
     return (
-      <div>
+      <div className="messages">
         {presenceRows}
       </div>
     )
