@@ -45,7 +45,7 @@ class Header extends Component {
               <i className="fa fa-lg fa-github" />
             </span>
           </a>
-          
+
           <div className="navbar-item">
             <AdminPanel />
           </div>
@@ -71,13 +71,13 @@ class Header extends Component {
                         <span>{user.name}</span>
                       </a>
                       <div className="navbar-dropdown is-right">
-                        <a className="navbar-item" href="/auth/logout">
+                        <a className="navbar-item" href="/app/auth/logout">
                           Logout
                         </a>
                       </div>
                     </div>
                   :
-                    <a className="button is-small is-link" href="/auth/google">
+                    <a className="button is-small is-link" href="/app/auth/google">
                       <span onClick={this.setRedirectUrlCookie}>Login</span>
                     </a>
                   }

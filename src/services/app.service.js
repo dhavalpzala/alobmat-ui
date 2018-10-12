@@ -5,14 +5,14 @@ const headers = {
 
 const AppService = {
   getAllGames() {
-    return fetch(`/api/games`, {
+    return fetch(`/app/api/games`, {
       method: 'GET',
       credentials: "same-origin",
       headers: headers
     })
   },
   createGame(gameName, interval) {
-    return fetch(`/api/games`, {
+    return fetch(`/app/api/games`, {
       method: 'POST',
       headers: headers,
       credentials: "same-origin",
@@ -45,7 +45,7 @@ const AppService = {
     })
   },
   pauseGame(gameId) {
-    return fetch(`/api/games/${gameId}/pause`, {
+    return fetch(`/app/api/games/${gameId}/pause`, {
       method: 'POST',
       headers: headers,
       credentials: "same-origin",
@@ -53,7 +53,7 @@ const AppService = {
     })
   },
   resumeGame(gameId) {
-    return fetch(`/api/games/${gameId}/resume`, {
+    return fetch(`/app/api/games/${gameId}/resume`, {
       method: 'POST',
       headers: headers,
       credentials: "same-origin",
@@ -64,14 +64,14 @@ const AppService = {
 
   },
   getToken() {
-    return fetch(`/api/auth/token`, {
+    return fetch(`/app/api/auth/token`, {
       method: 'GET',
       headers: headers,
       credentials: "same-origin"
     })
   },
   fetchLoggedInUser() {
-    return fetch(`/api/me`, {
+    return fetch(`/app/api/me`, {
       method: 'GET',
       headers: headers,
       credentials: "same-origin"
